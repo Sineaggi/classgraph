@@ -116,6 +116,12 @@ public class ClasspathFinderTest {
         assertEquals(0, paths.size(), "Classpath should have no other entries: " + paths);
     }
 
+    //@Test
+    //@EnabledForJreRange(min = JRE.JAVA_9)
+    //public void testWeGoPlaces() {
+    //    throw new RuntimeException(ClasspathFinderTest.class.toString());
+    //}
+
     /**
      * Test that {@link ScanSpec#enableSystemJarsAndModules}, {@link ScanSpec#ignoreParentClassLoaders}, and
      * {@link ScanSpec#overrideClassLoaders} work in combination:

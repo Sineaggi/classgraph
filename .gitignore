@@ -26,3 +26,6 @@ hs_err_pid*
 .cache*
 
 TODO-local
+
+.gradle
+build

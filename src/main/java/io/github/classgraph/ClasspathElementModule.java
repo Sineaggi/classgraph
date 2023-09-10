@@ -33,6 +33,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.nio.ByteBuffer;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.Collections;
 import java.util.HashSet;
@@ -89,7 +91,7 @@ class ClasspathElementModule extends ClasspathElement {
      *            the scan spec
      */
     ClasspathElementModule(final ModuleRef moduleRef,
-            final SingletonMap<ModuleRef, Recycler<ModuleReaderProxy, IOException>, IOException> // 
+            final SingletonMap<ModuleRef, Recycler<ModuleReaderProxy, IOException>, IOException> //
             moduleRefToModuleReaderProxyRecyclerMap, final ClasspathEntryWorkUnit workUnit,
             final ScanSpec scanSpec) {
         super(workUnit, scanSpec);
@@ -184,6 +186,34 @@ class ClasspathElementModule extends ClasspathElement {
             }
 
             @Override
+            public URI getClasspathElementURI() {
+                try {
+                    ModuleReaderProxy localModuleReaderProxy = moduleReaderProxyRecycler.acquire();
+                    try {
+                        URI start = localModuleReaderProxy.find(resourcePath);
+                        Path fullResourceURI = Paths.get(start);
+                        //String fullResourcePath = fullResourceURI.toString();
+                        //int lastIndex = fullResourcePath.lastIndexOf(resourcePath);
+                        //if (lastIndex == -1) {
+                        //    throw new IllegalStateException("Resource " + fullResourceURI + " does not end with " + resourcePath);
+                        //}
+                        //return URI.create(fullResourcePath.substring(0, lastIndex));
+                        int count = Paths.get(resourcePath).getNameCount();
+                        for (int i = 0; i < count; i++) {
+                            fullResourceURI = fullResourceURI.getParent();
+                        }
+                        return fullResourceURI.toUri();
+
+                    } finally {
+                        moduleReaderProxyRecycler.recycle(localModuleReaderProxy);
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            /*
+            @Override
             public URI getURI() {
                 try {
                     ModuleReaderProxy localModuleReaderProxy = moduleReaderProxyRecycler.acquire();
@@ -196,6 +226,7 @@ class ClasspathElementModule extends ClasspathElement {
                     throw new RuntimeException(e);
                 }
             }
+             */
 
             @Override
             public InputStream open() throws IOException {

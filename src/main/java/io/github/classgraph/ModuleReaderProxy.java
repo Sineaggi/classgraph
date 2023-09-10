@@ -91,14 +91,14 @@ public class ModuleReaderProxy implements Closeable {
 
     /**
      * Get the list of resources accessible to a ModuleReader.
-     * 
+     *
      * From the documentation for ModuleReader#list(): "Whether the stream of elements includes names corresponding
      * to directories in the module is module reader specific. In lazy implementations then an IOException may be
      * thrown when using the stream to list the module contents. If this occurs then the IOException will be wrapped
      * in an java.io.UncheckedIOException and thrown from the method that caused the access to be attempted.
      * SecurityException may also be thrown when using the stream to list the module contents and access is denied
      * by the security manager."
-     * 
+     *
      * @return A list of the paths of resources in the module.
      * @throws SecurityException
      *             If the module cannot be accessed.
@@ -124,10 +124,10 @@ public class ModuleReaderProxy implements Closeable {
 
     /**
      * Use the proxied ModuleReader to open the named resource as an InputStream.
-     * 
+     *
      * @param path
      *            The path to the resource to open.
-     * 
+     *
      * @return An {@link InputStream} for the content of the resource.
      * @throws SecurityException
      *             If the module cannot be accessed.
@@ -151,7 +151,7 @@ public class ModuleReaderProxy implements Closeable {
     /**
      * Use the proxied ModuleReader to open the named resource as a ByteBuffer. Call {@link #release(ByteBuffer)}
      * when you have finished with the ByteBuffer.
-     * 
+     *
      * @param path
      *            The path to the resource to open.
      * @return A {@link ByteBuffer} for the content of the resource.
@@ -176,7 +176,7 @@ public class ModuleReaderProxy implements Closeable {
 
     /**
      * Release a {@link ByteBuffer} allocated by calling {@link #read(String)}.
-     * 
+     *
      * @param byteBuffer
      *            The {@link ByteBuffer} to release.
      */

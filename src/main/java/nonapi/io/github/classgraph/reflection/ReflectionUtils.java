@@ -80,14 +80,14 @@ public final class ReflectionUtils {
      * thrown while trying to read the field, and throwException is true, then IllegalArgumentException is thrown
      * wrapping the cause, otherwise this will return null. If passed a null object, returns null unless
      * throwException is true, then throws IllegalArgumentException.
-     * 
+     *
      * @param throwException
      *            If true, throw an exception if the field value could not be read.
      * @param obj
      *            The object.
      * @param field
      *            The field.
-     * 
+     *
      * @return The field value.
      * @throws IllegalArgumentException
      *             If the field value could not be read.
@@ -120,14 +120,14 @@ public final class ReflectionUtils {
      * is thrown while trying to read the field, and throwException is true, then IllegalArgumentException is thrown
      * wrapping the cause, otherwise this will return null. If passed a null object, returns null unless
      * throwException is true, then throws IllegalArgumentException.
-     * 
+     *
      * @param throwException
      *            If true, throw an exception if the field value could not be read.
      * @param obj
      *            The object.
      * @param fieldName
      *            The field name.
-     * 
+     *
      * @return The field value.
      * @throws IllegalArgumentException
      *             If the field value could not be read.
@@ -160,14 +160,14 @@ public final class ReflectionUtils {
      * while trying to read the field value, and throwException is true, then IllegalArgumentException is thrown
      * wrapping the cause, otherwise this will return null. If passed a null class reference, returns null unless
      * throwException is true, then throws IllegalArgumentException.
-     * 
+     *
      * @param throwException
      *            If true, throw an exception if the field value could not be read.
      * @param cls
      *            The class.
      * @param fieldName
      *            The field name.
-     * 
+     *
      * @return The field value.
      * @throws IllegalArgumentException
      *             If the field value could not be read.
@@ -200,14 +200,14 @@ public final class ReflectionUtils {
      * call the method, and throwException is true, then IllegalArgumentException is thrown wrapping the cause,
      * otherwise this will return null. If passed a null object, returns null unless throwException is true, then
      * throws IllegalArgumentException.
-     * 
+     *
      * @param throwException
      *            If true, throw an exception if the field value could not be read.
      * @param obj
      *            The object.
      * @param methodName
      *            The method name.
-     * 
+     *
      * @return The result of the method invocation.
      * @throws IllegalArgumentException
      *             If the method could not be invoked.
@@ -228,7 +228,7 @@ public final class ReflectionUtils {
             return reflectionDriver.invokeMethod(obj, reflectionDriver.findInstanceMethod(obj, methodName));
         } catch (final Throwable e) {
             if (throwException) {
-                throw new IllegalArgumentException("Method \"" + methodName + "\" could not be invoked: " + e);
+                throw new IllegalArgumentException("Method \"" + methodName + "\" could not be invoked: " + e, e);
             }
             return null;
         }
@@ -239,7 +239,7 @@ public final class ReflectionUtils {
      * call the method, and throwException is true, then IllegalArgumentException is thrown wrapping the cause,
      * otherwise this will return null. If passed a null object, returns null unless throwException is true, then
      * throws IllegalArgumentException.
-     * 
+     *
      * @param throwException
      *            Whether to throw an exception on failure.
      * @param obj
@@ -250,7 +250,7 @@ public final class ReflectionUtils {
      *            The type of the method argument.
      * @param param
      *            The parameter value to use when invoking the method.
-     * 
+     *
      * @return The result of the method invocation.
      * @throws IllegalArgumentException
      *             If the method could not be invoked.
@@ -282,14 +282,14 @@ public final class ReflectionUtils {
      * Invoke the named method. If an exception is thrown while trying to call the method, and throwException is
      * true, then IllegalArgumentException is thrown wrapping the cause, otherwise this will return null. If passed
      * a null class reference, returns null unless throwException is true, then throws IllegalArgumentException.
-     * 
+     *
      * @param throwException
      *            Whether to throw an exception on failure.
      * @param cls
      *            The class.
      * @param methodName
      *            The method name.
-     * 
+     *
      * @return The result of the method invocation.
      * @throws IllegalArgumentException
      *             If the method could not be invoked.
@@ -320,7 +320,7 @@ public final class ReflectionUtils {
      * Invoke the named method. If an exception is thrown while trying to call the method, and throwException is
      * true, then IllegalArgumentException is thrown wrapping the cause, otherwise this will return null. If passed
      * a null class reference, returns null unless throwException is true, then throws IllegalArgumentException.
-     * 
+     *
      * @param throwException
      *            Whether to throw an exception on failure.
      * @param cls
@@ -331,7 +331,7 @@ public final class ReflectionUtils {
      *            The type of the method argument.
      * @param param
      *            The parameter value to use when invoking the method.
-     * 
+     *
      * @return The result of the method invocation.
      * @throws IllegalArgumentException
      *             If the method could not be invoked.
@@ -361,7 +361,7 @@ public final class ReflectionUtils {
 
     /**
      * Call Class.forName(className), but return null if any exception is thrown.
-     * 
+     *
      * @param className
      *            The class name to load.
      * @return The class of the requested name, or null if an exception was thrown while trying to load the class.
@@ -379,7 +379,7 @@ public final class ReflectionUtils {
 
     /**
      * Get a method by name, but return null if any exception is thrown.
-     * 
+     *
      * @param className
      *            The class name to load.
      * @return The class of the requested name, or null if an exception was thrown while trying to load the class.
